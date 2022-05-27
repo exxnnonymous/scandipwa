@@ -1,0 +1,103 @@
+.checkout-progress {
+  --transition-duration: 500ms;
+  --transition-delay: var(--transition-duration);
+  --light-gray:#dbdbdb;
+  --dark-gray:#95999b;
+  background: var(--breadcrumbs-background);
+  min-height: var(--breadcrumbs-height);
+  padding-block: 40px 50px;
+}
+
+.checkout-progress .progress-bar {
+  width: 100%;
+  display: flex;
+  grid-auto-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 5px;
+}
+
+.checkout-progress .progress-bar .bar {
+  height: 3px;
+  background: var(--light-gray);
+  border-radius: 900px;
+  position: relative;
+  flex-grow: 1;
+}
+.checkout-progress .progress-bar .bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--primary-base-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-duration);
+}
+.checkout-progress .progress-bar .bar.active::after {
+  transform: scaleX(1);
+}
+
+.checkout-progress .progress-bar .step {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+  position: relative;
+}
+
+.progress-bar .step p {
+  margin: 0;
+  color: var(--dark-gray);
+  font-weight: 600;
+  position: absolute;
+  width: max-content;
+  left: -75%;
+  bottom: -2.5rem;
+  transition: color var(--transition-duration);
+}
+
+.progress-bar .step.active p {
+  color: black;
+  transition-delay: var(--transition-delay);
+}
+
+.progress-bar .step .bullet {
+  height: 30px;
+  width: 30px;
+  background-color: var(--light-gray);
+  border-radius: 50%;
+  color: var(--dark-gray);
+  line-height: 25px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-duration);
+  transition-delay: var(--transition-delay);
+}
+.progress-bar .step .bullet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--primary-base-color);
+  opacity: 0;
+  transition: opacity var(--transition-duration);
+  transition-delay: var(--transition-delay);
+}
+
+.progress-bar .step.active .bullet {
+  color: #fff;
+}
+.progress-bar .step.active .bullet::before {
+  opacity: 1;
+}
+.progress-bar .step .bullet svg {
+  width: 15px;
+  fill: white;
+}
+.progress-bar .step .bullet span {
+  font-weight: 600;
+  font-size: 15px;
+  margin-top: 2px;
+  display: inline-block;
+}
